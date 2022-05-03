@@ -13,7 +13,7 @@ class UserSerializer(RegisterSerializer):
     name = serializers.CharField(required=True,max_length=100)
     phonenumber = serializers.CharField(required=True,max_length=100)
     referral_code = serializers.CharField(max_length=7, read_only=True)
-    # points = serializers.IntegerField(default=0)
+    points = serializers.IntegerField(default=0, read_only=True)
 
     def get_cleaned_data(self):
         # data_dict = super(UserSerializer(), self).get_cleaned_data()
