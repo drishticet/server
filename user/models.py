@@ -8,6 +8,10 @@ class CustomUser(AbstractUser):
     phonenumber = models.CharField(blank=True, max_length=100)
     points = models.IntegerField(default=0)
     referral_code = models.CharField(max_length=7)
+
+    class Meta:
+        ordering = ['-points']
+
     
     def __str__(self):
         return self.name
