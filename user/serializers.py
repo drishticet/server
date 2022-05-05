@@ -1,9 +1,7 @@
 from rest_framework import serializers
-
-from allauth.account.adapter import get_adapter
-from allauth.account.utils import setup_user_email
-
 from rest_auth.registration.serializers import RegisterSerializer
+
+from .models import CustomUser
 
 import random
 import string
@@ -21,23 +19,21 @@ class UserSerializer(RegisterSerializer):
         data_dict['college_name'] = self.validated_data.get('college_name', '')
         data_dict['name'] = self.validated_data.get('name', '')
         data_dict['phonenumber'] = self.validated_data.get('phonenumber', '')
-        data_dict['referral_code'] = self.validated_data.get('referral_code', '')
-
-        print('validated referal code ', self.validated_data.get('referral_code', ''))
-        
+        data_dict['referral_code'] = self.validated_data.get('referral_code', '')        
         return data_dict
 
     def save(self, request):
+        # for getting unique referral code
+        while True:
+            res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 7))
+            if not CustomUser.objects.filter(referral_code=res).exists():
+                break
+        
         user = super().save(request)
         user.college_name = self.data.get('college_name')
         user.name = self.data.get('name')
         user.phonenumber = self.data.get('phonenumber')
         user.points = 0
-
-        res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 7))
         user.referral_code = res
-
-        print('Refereal code : ', res)
-
         user.save()
         return user
