@@ -22,3 +22,4 @@ python manage.py runserver
 - http://127.0.0.1:8000/api/v1/rest-auth/registration/ - register new users
 - http://127.0.0.1:8000/api/v1/leaderboard/ - get leaderboard of top 5 users
 - http://127.0.0.1:8000/api/v1/usernamelist/ - return list of usernames
+- http://127.0.0.1:8000/api/v1/users/getuserdetails/ - return detail of currently logged in user
