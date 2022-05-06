@@ -151,3 +151,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# Don't require username
+ACCOUNT_USERNAME_REQUIRED = False
+# Still require email
+ACCOUNT_EMAIL_REQUIRED = True
+# Login with email (default is username)
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+
