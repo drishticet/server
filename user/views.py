@@ -9,7 +9,15 @@ class UserListView(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
-class UserView(generics.RetrieveAPIView):
-    # lookup_field = 'username'
-    queryset = models.CustomUser.objects.all()
-    serializer_class = serializers.UserSerializer
+# class UserView(generics.RetrieveAPIView):
+    # lookup_field = 'email'
+    # queryset = models.CustomUser.objects.all()
+    # serializer_class = serializers.UserSerializer
+class UserView(APIView):
+    def get(self, request, format=None):
+        user = request.user
+        if user.id:
+            serializer = serializers.UserSerializer(user)
+            return Response(serializer.data)
+        else:
+            return Response({"error":"need to be logged in"})
