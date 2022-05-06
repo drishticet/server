@@ -7,6 +7,7 @@ from user import models
 from user import serializers
 
 class LeaderBoard(generics.ListAPIView):
+    username = None
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
@@ -15,6 +16,7 @@ class LeaderBoard(generics.ListAPIView):
         return super().finalize_response(request, response, *args, **kwargs)
 
 class UsernameListView(APIView):
+    username = None
     def get(self, request, format=None):
         a = [f.username for f in models.CustomUser.objects.all()]
         context = {

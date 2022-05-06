@@ -10,6 +10,6 @@ class UserListView(generics.ListAPIView):
     serializer_class = serializers.UserSerializer
 
 class UserView(generics.RetrieveAPIView):
-    lookup_field = 'username'
+    # lookup_field = 'username'
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
