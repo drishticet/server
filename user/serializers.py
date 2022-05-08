@@ -17,7 +17,7 @@ class UserSerializer(RegisterSerializer):
     college_district = serializers.CharField(required=True, max_length=100)
     year = serializers.CharField(max_length=2)
     department = serializers.CharField(required=True, max_length=100)
-    phonenumber2 = serializers.CharField(max_length=100)
+    phonenumber2 = serializers.CharField(required=False, max_length=100)
 
     ordering = ('email',)
 

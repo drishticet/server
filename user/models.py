@@ -82,12 +82,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     college_name = models.CharField(blank=True, max_length=100)
     phonenumber = models.CharField(blank=True, max_length=100)
     points = models.IntegerField(default=0)
-    referral_code = models.CharField(max_length=7, unique=True)
+    referral_code = models.CharField(max_length=7)
 
     college_district = models.CharField(blank=True, max_length=100)
     year = models.CharField(blank=True, max_length=2)
     department = models.CharField(blank=True, max_length=100)
-    phonenumber2 = models.CharField(blank=True, max_length=100)
+    phonenumber2 = models.CharField(null=True, max_length=100)
 
     objects = UserManager()
 
